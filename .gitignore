@@ -8,9 +8,6 @@ __pycache__/
 env/
 .venv
 venv
-poetry.lock
-uv.lock
-.poetry
 
 # Unit test / coverage reports
 .coverage

@@ -13,10 +13,9 @@ build-backend = "hatchling.build"
 
 
 [tool.poe.tasks]
-test = "uv run pytest tests"
-lint = "uv run ruff check src tests *.py --fix"
-format = "uv run ruff format src tests *.py"
-isort = "uv run ruff check src tests *.py --select I --fix-only"
+lint = "uv run ruff check uv_app *.py --fix"
+format = "uv run ruff format uv_app *.py"
+isort = "uv run ruff check uv_app *.py --select I --fix-only"
 x = ["lint", "format", "isort"]
 
 [dependency-groups]
@@ -31,19 +30,27 @@ select = ["ALL"]
 ignore = [
   "ANN002",  # Missing type annotation for args
   "ANN003",  # Missing type annotation for kwarg
-  "ANN401",  # Dynamic type annotations
-  "COM812",  # Missing trailing comma
-  "D100",    # Missing docstring in public module
-  "D101",    # Missing docstring in public class (for obvious classes)
-  "D103",    # Missing docstring in public function (for obvious functions)
-  "D104",    # Missing docstring in public package
-  "FBT001",  # Bool use in arg
-  "FBT002",  # Default bool use in arg
-  "G004",    # Logging with f-strings
-  "INP001",  # Missing __init__.py in package
-  "PLR0913", # Too many arguments (ignored if default args are used)
-  "S101",    # Use of assert
-  "SLF001",  # Access to a private member (for tests only)
+  "ERA001",  # Commented out code
+  "S104",    # Possible binding to all interfaces
+  "BLE001",  # Do not catch Exception
+  "FBT",     # Bools in arguments
+  "DTZ",     # Datetime timezone
+  "EM",      # f-strings in exception messages
+  "FIX",     # Left out TODO, FIXME, etc.
+  "INT",     # f-string in function execeution before calls
+  "G",       # Logging linting
+  "TD",      # Rules for TODO
+  "E501",    # Line too long
+  "E722",    # Do not use bare except
+  "W505",    # Doc line too long
+  "D100",    # Missing docstring
+  "D101",    # Missing docstring
+  "D102",    # Missing docstring
+  "D103",    # Missing docstring
+  "D104",    # Missing docstring
+  "D105",    # Missing docstring
+  "D106",    # Missing docstring
+  "D107",    # Missing docstring
 ]
 
 [tool.ruff.lint.pydocstyle]
