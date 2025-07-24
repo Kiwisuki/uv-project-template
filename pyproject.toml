@@ -1,10 +1,13 @@
 [project]
 name = "uv_app"
-version = "0.1.0"
+version = "0.1.2"
 description = ""
 readme = "README.md"
 requires-python = "~=3.11"
-dependencies = []
+dependencies = [
+    "pydantic-settings>=2.10.1",
+    "python-dotenv>=1.0.1",
+]
 
 [build-system]
 requires = ["hatchling"]
@@ -13,17 +16,18 @@ build-backend = "hatchling.build"
 
 
 [tool.poe.tasks]
-lint = "uv run ruff check uv_app *.py --fix"
-format = "uv run ruff format uv_app *.py"
-isort = "uv run ruff check uv_app *.py --select I --fix-only"
-x = ["lint", "format", "isort"]
+lint = "uv run ruff check . --fix"
+format = "uv run ruff format ."
+x = ["format", "lint"]
 
 [dependency-groups]
 dev = [
     "poethepoet>=0.32.2",
-    "python-dotenv>=1.0.1",
     "ruff>=0.9.7",
 ]
+
+[tool.ruff]
+exclude = [".venv"]
 
 [tool.ruff.lint]
 select = ["ALL"]
