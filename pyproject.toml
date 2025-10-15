@@ -3,7 +3,7 @@ name = "uv_app"
 version = "0.1.2"
 description = ""
 readme = "README.md"
-requires-python = "~=3.11"
+requires-python = ">=3.11.0, <3.12"
 dependencies = [
     "pydantic-settings>=2.10.1",
     "python-dotenv>=1.0.1",
