@@ -1,0 +1,24 @@
+FROM python:3.14-slim AS builder
+
+WORKDIR /app
+ENV UV_COMPILE_BYTECODE=1
+
+COPY pyproject.toml uv.lock ./
+RUN pip install --no-cache-dir uv \
+ && uv sync --frozen --no-install-project --group dev
+
+COPY uv_app/ ./uv_app/
+COPY tests/ ./tests/
+
+FROM python:3.14-slim
+
+WORKDIR /app
+
+COPY --from=builder /app/.venv /app/.venv
+COPY --from=builder /app/uv_app ./uv_app
+COPY --from=builder /app/tests ./tests
+
+RUN adduser --disabled-password --gecos '' appuser && chown -R appuser /app
+USER appuser
+
+CMD ["/app/.venv/bin/pytest", "-q"]

@@ -3,10 +3,11 @@ name = "uv_app"
 version = "0.1.2"
 description = ""
 readme = "README.md"
-requires-python = ">=3.11.0, <3.12"
+requires-python = ">=3.14.0, <3.15"
 dependencies = [
-    "pydantic-settings>=2.10.1",
-    "python-dotenv>=1.0.1",
+    "click>=8.3.1",
+    "pydantic-settings>=2.12.0",
+    "python-dotenv>=1.2.1",
 ]
 
 [build-system]
@@ -23,7 +24,8 @@ x = ["format", "lint"]
 [dependency-groups]
 dev = [
     "poethepoet>=0.32.2",
-    "ruff>=0.9.7",
+    "pytest>=8.3.3",
+    "ruff>=0.14.6",
 ]
 
 [tool.ruff]
@@ -56,6 +58,9 @@ ignore = [
   "D106",    # Missing docstring
   "D107",    # Missing docstring
 ]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
