@@ -9,7 +9,7 @@ def cli() -> None:
 @cli.command()
 def main() -> None:
     """An example command that prints a message."""
-    click.echo("This is an example command from uv_app.")
+    click.echo("This is an example command from the app.")
 
 
 if __name__ == "__main__":

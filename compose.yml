@@ -5,10 +5,3 @@ services:
       dockerfile: Dockerfile.main
     env_file:
       - .env
-  
-  tests:
-    build:
-      context: .
-      dockerfile: Dockerfile.test
-    env_file:
-      - .env
